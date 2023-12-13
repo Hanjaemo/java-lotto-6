@@ -4,6 +4,9 @@ import lotto.exception.ErrorMessage;
 
 public class BonusNumber {
 
+    private static final int MIN_NUMBER = Lotto.MIN_NUMBER;
+    private static final int MAX_NUMBER = Lotto.MAX_NUMBER;
+
     private final int number;
 
     public BonusNumber(int number) {
@@ -12,11 +15,15 @@ public class BonusNumber {
     }
 
     private void validate(int number) {
-        if (number < Lotto.MIN_NUMBER || number > Lotto.MAX_NUMBER) {
+        if (isOutOfRange(number)) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.INVALID_BONUS_NUMBER_BY_RANGE.getMessage(),
-                            Lotto.MIN_NUMBER, Lotto.MAX_NUMBER));
+                            MIN_NUMBER, MAX_NUMBER));
         }
+    }
+
+    private boolean isOutOfRange(int number) {
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
     public int getNumber() {

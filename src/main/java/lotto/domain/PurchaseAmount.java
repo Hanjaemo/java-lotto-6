@@ -15,15 +15,27 @@ public class PurchaseAmount {
     }
 
     private void validate(int amount) {
-        if (amount < MINIMUM_AMOUNT || amount > MAXIMUM_AMOUNT) {
-            throw new IllegalArgumentException(
+        if (isOutOfRange(amount)) {
+            throwIllegalException(
                     String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_BY_RANGE.getMessage(),
                             MINIMUM_AMOUNT, MAXIMUM_AMOUNT));
         }
-        if (amount % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException(
+        if (isNotMultipleOfLottoPrice(amount)) {
+            throwIllegalException(
                     String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_BY_UNIT.getMessage(), Lotto.PRICE));
         }
+    }
+
+    private boolean isOutOfRange(int amount) {
+        return amount < MINIMUM_AMOUNT || amount > MAXIMUM_AMOUNT;
+    }
+
+    private boolean isNotMultipleOfLottoPrice(int amount) {
+        return amount % Lotto.PRICE != 0;
+    }
+
+    private void throwIllegalException(String errorMessage) {
+        throw new IllegalArgumentException(errorMessage);
     }
 
     public int divide(int amount) {
