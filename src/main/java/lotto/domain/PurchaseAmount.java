@@ -11,4 +11,8 @@ public class PurchaseAmount {
     public int divide(int amount) {
         return this.amount / amount;
     }
+
+    public int getAmount() {
+        return amount;
+    }
 }
