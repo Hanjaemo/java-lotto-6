@@ -31,4 +31,8 @@ public class Lotto {
         boolean hasBonusNumber = numbers.contains(bonusNumber);
         return Rank.of(matchCount, hasBonusNumber);
     }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
+    }
 }

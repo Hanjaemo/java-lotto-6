@@ -20,4 +20,14 @@ public class Lottos {
         }
         return new WinningResult(winningResult);
     }
+
+    public int size() {
+        return lottos.size();
+    }
+
+    public List<List<Integer>> getLottos() {
+        return lottos.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
 }
