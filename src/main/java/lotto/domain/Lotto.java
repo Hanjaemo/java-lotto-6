@@ -24,5 +24,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public Rank check(Lotto winningLotto, int bonusNumber) {
+        int matchCount = (int) numbers.stream()
+                .filter(winningLotto.numbers::contains)
+                .count();
+        boolean hasBonusNumber = numbers.contains(bonusNumber);
+        return Rank.of(matchCount, hasBonusNumber);
+    }
 }
