@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Lottos {
 
@@ -28,6 +29,6 @@ public class Lottos {
     public List<List<Integer>> getLottos() {
         return lottos.stream()
                 .map(Lotto::getNumbers)
-                .toList();
+                .collect(Collectors.toList());
     }
 }

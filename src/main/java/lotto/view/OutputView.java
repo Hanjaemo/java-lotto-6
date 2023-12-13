@@ -22,6 +22,12 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (int i = 0; i < matchCounts.size(); i++) {
+            if (i == 3) {
+                System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개%n",
+                        matchCounts.get(i),
+                        convertNumberToKoreanWonFormat(prizes.get(i)),
+                        winningCounts.get(i));
+            }
             System.out.printf("%d개 일치 (%s) - %d개%n",
                     matchCounts.get(i),
                     convertNumberToKoreanWonFormat(prizes.get(i)),
@@ -31,5 +37,9 @@ public class OutputView {
 
     private static String convertNumberToKoreanWonFormat(long amount) {
         return new DecimalFormat("#,###원").format(amount);
+    }
+
+    public static void printProfitRate(double profitRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", profitRate);
     }
 }

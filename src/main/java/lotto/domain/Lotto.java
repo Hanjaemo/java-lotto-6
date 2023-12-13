@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -14,9 +15,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().sorted().collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -44,6 +44,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return List.copyOf(numbers);
+        return numbers;
     }
 }

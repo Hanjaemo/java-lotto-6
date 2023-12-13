@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -23,10 +24,11 @@ public class WinningResult {
         for (Rank rank : Rank.values()) {
             rankAndCount.putIfAbsent(rank, 0);
         }
+
         return rankAndCount.entrySet().stream()
                 .filter(entry -> entry.getKey() != Rank.MISS)
+                .sorted(Collections.reverseOrder(Entry.comparingByKey()))
                 .map(Entry::getValue)
-                .sorted()
                 .toList();
     }
 }

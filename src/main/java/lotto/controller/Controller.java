@@ -2,9 +2,6 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.stream.Collectors;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
@@ -43,5 +40,6 @@ public class Controller {
                 .toList();
 
         OutputView.printWinningResult(matchCounts, prizes, winningResult.winningCounts());
+        OutputView.printProfitRate(profitRate);
     }
 }
