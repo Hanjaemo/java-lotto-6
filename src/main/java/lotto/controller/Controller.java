@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoIssuer;
 import lotto.domain.Lottos;
@@ -18,5 +19,6 @@ public class Controller {
         OutputView.printIssuedLottos(lottos.getLottos());
 
         Lotto winningLotto = new Lotto(InputView.readWinningLotto());
+        BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
     }
 }
