@@ -27,6 +27,7 @@ class LottoTest {
     @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
     @Test
     void createLotto_Fail_ByUnderSize() {
+        // when, then
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -34,6 +35,7 @@ class LottoTest {
     @DisplayName("로또 번호가 45보다 크면 예외가 발생한다.")
     @Test
     void createLotto_Fail_ByOverSizeNumber() {
+        // when, then
         Assertions.assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,6 +43,7 @@ class LottoTest {
     @DisplayName("로또 번호가 정상적으로 생성된다.")
     @Test
     void createLotto_Success() {
+        // when, then
         Assertions.assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))).isInstanceOf(Lotto.class);
     }
 }
