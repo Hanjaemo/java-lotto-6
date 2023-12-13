@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
 
@@ -22,6 +23,16 @@ public class Lotto {
         if (numbers.size() != SIZE) {
             throw new IllegalArgumentException(); // TODO 예외 메시지
         }
+        if (numbers.stream().anyMatch(this::isOutOfRange)) {
+            throw new IllegalArgumentException(); // TODO 예외 메시지
+        }
+        if (Set.copyOf(numbers).size() != SIZE) {
+            throw new IllegalArgumentException(); // TODO 예외 메시지
+        }
+    }
+
+    private boolean isOutOfRange(Integer number) {
+        return number < MIN_NUMBER || number > MAX_NUMBER;
     }
 
     public Rank check(Lotto winningLotto, int bonusNumber) {
