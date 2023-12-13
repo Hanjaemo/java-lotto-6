@@ -1,7 +1,12 @@
 package lotto;
 
+import lotto.controller.Controller;
+import lotto.domain.LottoIssuer;
+import lotto.service.LottoService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        Controller controller = new Controller(new LottoService(new LottoIssuer()));
+        controller.run();
     }
 }
