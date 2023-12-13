@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.stream.Stream;
 
@@ -29,8 +31,20 @@ public enum Rank {
                 .orElse(MISS);
     }
 
-    public int getMatchCount() {
-        return matchCount;
+    public static List<Integer> matchCounts() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.MISS)
+                .map(rank -> rank.matchCount)
+                .sorted()
+                .toList();
+    }
+
+    public static List<Long> prizes() {
+        return Arrays.stream(Rank.values())
+                .filter(rank -> rank != Rank.MISS)
+                .map(rank -> rank.prize)
+                .sorted()
+                .toList();
     }
 
     public long getPrize() {
