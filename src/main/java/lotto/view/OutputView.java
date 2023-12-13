@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class OutputView {
@@ -13,5 +14,22 @@ public class OutputView {
 
     public static void printIssuedLottos(List<List<Integer>> lottos) {
         lottos.forEach(System.out::println);
+    }
+
+    public static void printWinningResult(List<Integer> matchCounts,
+                                          List<Long> prizes,
+                                          List<Integer> winningCounts) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (int i = 0; i < matchCounts.size(); i++) {
+            System.out.printf("%d개 일치 (%s) - %d개%n",
+                    matchCounts.get(i),
+                    convertNumberToKoreanWonFormat(prizes.get(i)),
+                    winningCounts.get(i));
+        }
+    }
+
+    private static String convertNumberToKoreanWonFormat(long amount) {
+        return new DecimalFormat("#,###원").format(amount);
     }
 }

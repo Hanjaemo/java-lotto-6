@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^([1-9]+)(?:,([1-9]+))*$");
+    private static final Pattern WINNING_NUMBERS_PATTERN = Pattern.compile("^([0-9]+)(?:,([0-9]+))*$");
 
     private InputView() {
     }

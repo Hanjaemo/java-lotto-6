@@ -29,6 +29,10 @@ public enum Rank {
                 .orElse(MISS);
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
     public long getPrize() {
         return prize;
     }
