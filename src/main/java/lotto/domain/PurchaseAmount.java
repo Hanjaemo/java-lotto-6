@@ -17,12 +17,12 @@ public class PurchaseAmount {
     private void validate(int amount) {
         if (amount < MINIMUM_AMOUNT || amount > MAXIMUM_AMOUNT) {
             throw new IllegalArgumentException(
-                    String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage(),
+                    String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_BY_RANGE.getMessage(),
                             MINIMUM_AMOUNT, MAXIMUM_AMOUNT));
         }
         if (amount % Lotto.PRICE != 0) {
             throw new IllegalArgumentException(
-                    String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getMessage(), Lotto.PRICE));
+                    String.format(ErrorMessage.INVALID_PURCHASE_AMOUNT_BY_UNIT.getMessage(), Lotto.PRICE));
         }
     }
 

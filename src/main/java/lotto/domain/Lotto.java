@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.exception.ErrorMessage;
 
 public class Lotto {
 
@@ -21,13 +22,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != SIZE) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException(String.format(ErrorMessage.INVALID_LOTTO_BY_SIZE.getMessage(), SIZE));
         }
         if (numbers.stream().anyMatch(this::isOutOfRange)) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException(
+                    String.format(ErrorMessage.INVALID_LOTTO_BY_RANGE.getMessage(), MIN_NUMBER, MAX_NUMBER));
         }
         if (Set.copyOf(numbers).size() != SIZE) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_BY_DUPLICATED.getMessage());
         }
     }
 

@@ -9,21 +9,22 @@ import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.WinningResult;
+import lotto.exception.ExceptionHandler;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
 
     public void run() {
-        PurchaseAmount purchaseAmount = new PurchaseAmount(InputView.readPurchaseAmount());
+        PurchaseAmount purchaseAmount = ExceptionHandler.handleIllegalArgumentException(this::getPurchaseAmount);
 
         LottoIssuer lottoIssuer = new LottoIssuer();
         Lottos lottos = lottoIssuer.issueLottos(purchaseAmount);
         OutputView.printNumberOfLottos(lottos.size());
         OutputView.printIssuedLottos(lottos.getLottos());
 
-        Lotto winningLotto = new Lotto(InputView.readWinningLotto());
-        BonusNumber bonusNumber = new BonusNumber(InputView.readBonusNumber());
+        Lotto winningLotto = ExceptionHandler.handleIllegalArgumentException(this::getWinningLotto);
+        BonusNumber bonusNumber = ExceptionHandler.handleIllegalArgumentException(this::getBonusNumber);
 
         WinningResult winningResult = lottos.check(winningLotto, bonusNumber);
         double profitRate = winningResult.calculateProfitRate(purchaseAmount);
@@ -41,5 +42,17 @@ public class Controller {
 
         OutputView.printWinningResult(matchCounts, prizes, winningResult.winningCounts());
         OutputView.printProfitRate(profitRate);
+    }
+
+    private BonusNumber getBonusNumber() {
+        return new BonusNumber(InputView.readBonusNumber());
+    }
+
+    private Lotto getWinningLotto() {
+        return new Lotto(InputView.readWinningLotto());
+    }
+
+    private PurchaseAmount getPurchaseAmount() {
+        return new PurchaseAmount(InputView.readPurchaseAmount());
     }
 }

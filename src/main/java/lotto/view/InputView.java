@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import lotto.exception.ErrorMessage;
 
 public class InputView {
 
@@ -23,7 +24,7 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.getMessage());
         }
     }
 
@@ -31,7 +32,7 @@ public class InputView {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         if (!WINNING_NUMBERS_PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException(); // TODO 예외 메시지
+            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PATTERN.getMessage());
         }
         return Arrays.stream(input.split(","))
                 .map(String::trim)
